@@ -1,5 +1,4 @@
 const z = require("zod");
-const { da } = require("zod/v4/locales");
 
 const movieSchema = z.object({
 	title: z.string({
@@ -37,11 +36,12 @@ const movieSchema = z.object({
 });
 
 function validateMovie(input) {
+	//console.log("Validating movie:", input);
 	return movieSchema.safeParse(input);
 }
 
 function validatePartialMovie(input) {
-	return movieSchema.partial().safeParse(input);
+	return movieSchema.partial().safeParse(input); // todas las propiedades del esquema son opcionales, pero si estan las validas
 }
 
 module.exports = {
